@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+    reverseproxy:
+        image: hajism/nginx-reverseproxy
+        ports:
+            - 8080:8080
+        restart: always
+ 
+    nginx:
+        depends_on:
+            - reverseproxy
+        image: nginx:alpine
+        volumes:
+          - ./index.html:/usr/share/nginx/html/index.html
+        restart: always

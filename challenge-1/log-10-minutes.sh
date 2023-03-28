@@ -1,0 +1,1 @@
+awk -v d1="$(date --date '-10 min' '+%d/%b/%Y:%T')" '{gsub(/^[\[\t]+/, "", $4);}; $4 > d1' ./*access.log | grep "500" | echo "there were $(wc -l) in -e ./*.log"
